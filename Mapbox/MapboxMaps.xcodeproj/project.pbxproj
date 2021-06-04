@@ -166,6 +166,7 @@
 		2B8637D52461601100698135 /* MapboxScaleBarOrnamentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8637D42461601100698135 /* MapboxScaleBarOrnamentView.swift */; };
 		2B8637E32462F5AE00698135 /* MapboxScaleBarLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8637E22462F5AE00698135 /* MapboxScaleBarLabel.swift */; };
 		2B8637E62463F36400698135 /* DistanceFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8637D72461992200698135 /* DistanceFormatter.swift */; };
+		3EBD63B326699D8F008A2AC3 /* MapboxScaleBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD63B226699D8F008A2AC3 /* MapboxScaleBarTests.swift */; };
 		58549A1A265D9867009BC19C /* MapboxMapsSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1B3DB2446B6F40044A3C6 /* MapboxMapsSnapshotTests.swift */; };
 		586168FD265D9D4B00911E3D /* Snapshot-Asset.png in Resources */ = {isa = PBXBuildFile; fileRef = 586168FC265D9D4B00911E3D /* Snapshot-Asset.png */; };
 		58EFAD15265FF4EE007FC1FF /* MapboxCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 58EFAD13265FF4C2007FC1FF /* MapboxCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -598,6 +599,7 @@
 		2B863850246D337200698135 /* polygon.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = polygon.geojson; sourceTree = "<group>"; };
 		2B863851246D337200698135 /* featurecollection.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = featurecollection.geojson; sourceTree = "<group>"; };
 		2B86385D246D3BA700698135 /* GeoJSONManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoJSONManagerTests.swift; sourceTree = "<group>"; };
+		3EBD63B226699D8F008A2AC3 /* MapboxScaleBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxScaleBarTests.swift; sourceTree = "<group>"; };
 		586168FC265D9D4B00911E3D /* Snapshot-Asset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Snapshot-Asset.png"; sourceTree = "<group>"; };
 		58EFAD13265FF4C2007FC1FF /* MapboxCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MapboxCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58EFAD14265FF4C3007FC1FF /* MapboxCoreMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MapboxCoreMaps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -838,6 +840,7 @@
 		07797F9F242C21BC00229F7D /* MapboxMapsOrnamentsTests */ = {
 			isa = PBXGroup;
 			children = (
+				3EBD63B126699D7A008A2AC3 /* Scale Bar */,
 				A495048C2666BE8700130A8F /* Compass */,
 				2B8637E72464021500698135 /* DistanceFormatterTests.swift */,
 				07797FA0242C21BC00229F7D /* OrnamentManagerTests.swift */,
@@ -1442,6 +1445,14 @@
 				2B863851246D337200698135 /* featurecollection.geojson */,
 			);
 			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		3EBD63B126699D7A008A2AC3 /* Scale Bar */ = {
+			isa = PBXGroup;
+			children = (
+				3EBD63B226699D8F008A2AC3 /* MapboxScaleBarTests.swift */,
+			);
+			path = "Scale Bar";
 			sourceTree = "<group>";
 		};
 		5A3593722476AE3400E67344 /* Compass */ = {
@@ -2055,6 +2066,7 @@
 				CAE43ED5265460FE006F43E9 /* MapFeatureQueryable.swift in Sources */,
 				0C708F3124EB1EE2003CE791 /* CircleLayer.swift in Sources */,
 				CAE643E6265D7D4000C9E223 /* MapProjectionDelegate.swift in Sources */,
+				3EBD63B326699D8F008A2AC3 /* MapboxScaleBarTests.swift in Sources */,
 				0CD62F0724588501006421D1 /* PinchGestureHandler.swift in Sources */,
 				0782B17B258C236B00D5FCE5 /* MBXGeometry.swift in Sources */,
 				B529341D2624E9D6003B181C /* DelegatingMapClient.swift in Sources */,

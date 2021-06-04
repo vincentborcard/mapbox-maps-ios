@@ -29,7 +29,7 @@ internal class MapboxScaleBarOrnamentView: UIView {
         }
     }
 
-    lazy private var labelViews: [UIView] = {
+    lazy internal var labelViews: [UIView] = {
         var labels: [UIView] = []
         for _ in 0..<4 {
             let view = UIView()
@@ -44,7 +44,7 @@ internal class MapboxScaleBarOrnamentView: UIView {
     }()
 
     private var _bars: [UIView]?
-    private var bars: [UIView] {
+    internal var bars: [UIView] {
         if _bars == nil {
             var bars: [UIView] = []
             for _ in 0..<row.numberOfBars {
@@ -61,7 +61,7 @@ internal class MapboxScaleBarOrnamentView: UIView {
     var size = CGSize()
     // This container view's size and position can change based on the size
     // of its contents. It is contained within the `staticContainerView`.
-    lazy private var dynamicContainerView: UIView = {
+    lazy internal var dynamicContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = Constants.primaryColor
         view.layer.borderColor = Constants.primaryColor.cgColor
@@ -100,14 +100,14 @@ internal class MapboxScaleBarOrnamentView: UIView {
         return isMetricLocale ? metersPerPoint : metersPerPoint * Constants.feetPerMeter
     }
 
-    private var maximumWidth: CGFloat {
+    internal var maximumWidth: CGFloat {
         guard let bounds = superview?.bounds else {
             return 0
         }
         return floor(bounds.width / 2)
     }
 
-    private var isMetricLocale: Bool {
+    internal var isMetricLocale: Bool {
         return Locale(identifier: Bundle.main.preferredLocalizations.first!).usesMetricSystem
     }
 
@@ -343,7 +343,7 @@ internal class MapboxScaleBarOrnamentView: UIView {
         return UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft
     }
 
-    private func preferredRow() -> Row {
+    internal func preferredRow() -> Row {
         let maximumDistance: CLLocationDistance = Double(maximumWidth) * unitsPerPoint
         let table = isMetricLocale ? Constants.metricTable : Constants.imperialTable
         let rowIndex = table.firstIndex {
