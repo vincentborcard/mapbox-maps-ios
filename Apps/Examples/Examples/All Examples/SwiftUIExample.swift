@@ -128,6 +128,7 @@ internal class SwiftUIMapViewCoordinator {
         didSet {
             /// The coordinator observes the `.cameraChanged` event, and
             /// whenever the camera changes, it updates the camera binding
+
             mapView?.mapboxMap.onNext(.cameraChanged, handler: notify(for:))
 
             /// The coordinator also observes the `.mapLoaded` event
@@ -150,8 +151,10 @@ internal class SwiftUIMapViewCoordinator {
         /// will propagate this change to any other UI elements connected
         /// to the same binding.
         case .cameraChanged:
-            camera.center = mapView.cameraState.center
-            camera.zoom = mapView.cameraState.zoom
+            DispatchQueue.main.async {
+                self.camera.center = mapView.cameraState.center
+                self.camera.zoom = mapView.cameraState.zoom
+            }
 
         /// When the map reloads, we need to re-sync the annotations
         case .mapLoaded:
