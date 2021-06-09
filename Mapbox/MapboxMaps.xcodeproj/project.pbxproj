@@ -157,6 +157,7 @@
 		0CD62F24245887CD006421D1 /* OrnamentSupportableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076C4521242D4DF800A5E0C4 /* OrnamentSupportableView.swift */; };
 		0CD62F2C24588937006421D1 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4519DE42432FF14007CF39A /* Style.swift */; };
 		0CD62F392458CDD6006421D1 /* GestureUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765213A245740BA00FDD209 /* GestureUtilities.swift */; };
+		0CDDA0B3267112390053A278 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CDDA0B2267112390053A278 /* Images.xcassets */; };
 		0CDFEB0D25A7745A008BC505 /* UtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDFEAD725A77430008BC505 /* UtilsTests.swift */; };
 		0CE3D1B425816BD6000585A2 /* MapView+Supportable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE3D1B325816BD6000585A2 /* MapView+Supportable.swift */; };
 		0CE8ED6125890F870066E56C /* ModelSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE8ED6025890F870066E56C /* ModelSource.swift */; };
@@ -560,6 +561,7 @@
 		0CD34FD0242AADDB00943687 /* MapboxMaps.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapboxMaps.h; sourceTree = "<group>"; };
 		0CD34FD1242AADDB00943687 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0CD34FDD242AADDB00943687 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0CDDA0B2267112390053A278 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Sources/MapboxMaps/Images.xcassets; sourceTree = "<group>"; };
 		0CDFEAD725A77430008BC505 /* UtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTests.swift; sourceTree = "<group>"; };
 		0CE3D1B325816BD6000585A2 /* MapView+Supportable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapView+Supportable.swift"; sourceTree = "<group>"; };
 		0CE8ED6025890F870066E56C /* ModelSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSource.swift; sourceTree = "<group>"; };
@@ -1340,6 +1342,7 @@
 		1FEE78B92421884000337895 = {
 			isa = PBXGroup;
 			children = (
+				0CDDA0B2267112390053A278 /* Images.xcassets */,
 				C6C5CDBD264C0CBE0097FCD1 /* MigrationGuide */,
 				CA56648B24478722006F392C /* Configurations */,
 				0CD34FCF242AADDB00943687 /* MapboxMaps */,
@@ -1860,6 +1863,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5F295562635EF4E00199426 /* CompassDirectionShort.strings in Resources */,
+				0CDDA0B3267112390053A278 /* Images.xcassets in Resources */,
 				B5F295552635EF4E00199426 /* CompassDirectionLong.strings in Resources */,
 				C64994AD258D5ADE0052C21C /* IndicatorAssets.xcassets in Resources */,
 				B53A685B25E033AF008CB2AF /* OrnamentsLocalizable.strings in Resources */,

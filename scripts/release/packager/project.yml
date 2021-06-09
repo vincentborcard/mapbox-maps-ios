@@ -30,6 +30,7 @@ targets:
           - "**/*.h"
       - path: "Sources/MapboxMaps/MapView/Info.plist"
       - path: "Sources/MapboxMaps/MapView/MapboxMaps.h"
+      - path: "Sources/MapboxMaps/Images.xcassets"
     dependencies:
       - framework: "../MapboxCoreMaps.xcframework"
       - framework: "../Turf.xcframework"

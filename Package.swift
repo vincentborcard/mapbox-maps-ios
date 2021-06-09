@@ -23,6 +23,9 @@ let package = Package(
             dependencies: ["MapboxCoreMaps", "Turf", "MapboxMobileEvents"],
             exclude: [
                 "MapView/Info.plist"
+            ],
+            resources: [
+                .process("Images.xcassets")
             ]
         ),
         .testTarget(
