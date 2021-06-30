@@ -215,7 +215,8 @@ public struct Examples {
                 type: AnimateImageLayerExample.self),
         Example(title: "Add a raster tile source",
                 description: "Add third-party raster tiles to a map.",
-                type: RasterTileSourceExample.self)
+                type: RasterTileSourceExample.self),
+        Example(title: "Use a distance expression", description: "", type: DistanceExpressionExample.self)
     ]
 
     // Examples that show use cases related to user interaction with the map.
