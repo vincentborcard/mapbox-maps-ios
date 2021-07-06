@@ -4,6 +4,9 @@ Mapbox welcomes participation and contributions from everyone.
 
 ## main
 
+* Fixed an issue that could cause flickering during ease to and basic animations ([#519](https://github.com/mapbox/mapbox-maps-ios/pull/519))
+* Fixed an issue that could result in ease to and basic animations never reaching their final values ([#519](https://github.com/mapbox/mapbox-maps-ios/pull/519))
+
 ## 10.0.0-rc.3 - June 30, 2021
 
 ### Features ✨ and improvements 🏁
