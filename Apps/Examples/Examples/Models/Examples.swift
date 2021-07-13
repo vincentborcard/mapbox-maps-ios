@@ -207,9 +207,6 @@ public struct Examples {
         Example(title: "Change the map's language",
                 description: "Switch between supported languages for Symbol Layers",
                 type: LocalizationExample.self),
-        Example(title: "Add an interactive clustered layer",
-                description: "Display an alert controller after selecting a feature.",
-                type: SymbolClusteringExample.self),
         Example(title: "Add an animated image",
                 description: "Add an image to a raster layer on the map and animate it.",
                 type: AnimateImageLayerExample.self),
@@ -227,6 +224,9 @@ public struct Examples {
         Example(title: "Restrict the map's coordinate bounds",
                 description: "Prevent the map from panning outside the specified coordinate bounds.",
                 type: RestrictCoordinateBoundsExample.self),
+        Example(title: "Add an interactive clustered layer",
+                description: "Display an alert controller after selecting a feature.",
+                type: SymbolClusteringExample.self),
     ]
 }
 
