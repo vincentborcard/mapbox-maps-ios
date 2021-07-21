@@ -1,10 +1,10 @@
 import MapboxMaps
+import Turf
 
 @objc(LineLayerWithTerrainExample)
 
 class LineLayerWithTerrainExample: UIViewController, ExampleProtocol {
     var mapView: MapView!
-    let terrainId = "mapbox-terrain"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,13 +38,12 @@ class LineLayerWithTerrainExample: UIViewController, ExampleProtocol {
         do {
             // Add 3D terrain to the `MapView`.
             try style.addSource(demSource, id: "mapbox-dem")
-
             try style.setTerrain(terrain)
+
+            addGeoJSONLine()
         } catch {
             print("Failed to display terrain on the map. Error: \(error.localizedDescription)")
         }
-
-        addGeoJSONLine()
     }
 
     func addGeoJSONLine() {
@@ -55,7 +54,6 @@ class LineLayerWithTerrainExample: UIViewController, ExampleProtocol {
         let url = Bundle.main.url(forResource: "marathon_route", withExtension: "geojson")!
         var source = GeoJSONSource()
         source.data = .url(url)
-        print(url)
 
         var lineLayer = LineLayer(id: "marathon-route-layer")
         lineLayer.source = sourceId
@@ -67,8 +65,21 @@ class LineLayerWithTerrainExample: UIViewController, ExampleProtocol {
         do {
             try style.addSource(source, id: sourceId)
             try style.addLayer(lineLayer)
+
+            animateCamera()
         } catch {
             print("Failed to add a `LineLayer`. Error: \(error.localizedDescription)")
+        }
+    }
+
+    func animateCamera() {
+        _ = mapView.mapboxMap.queryRenderedFeatures(in: view.bounds, options: RenderedQueryOptions(layerIds: ["marathon-route-layer"], filter: nil)) { [weak self] result in
+            switch result {
+            case .success(let queriedFeatures):
+                let line = queriedFeatures.first as Turf.Feature
+            case .failure(let error):
+                print("Error querying rendered features: \(error.localizedDescription)")
+            }
         }
     }
 }
