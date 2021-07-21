@@ -4,13 +4,13 @@ import UIKit
 /// Tells the view to update itself when required
 internal class PinchGestureHandler: GestureHandler {
 
-    internal var scale: CGFloat = 0.0
+    internal var scale = 0.0
 
     // TODO: Inject the deceleration rate as part of a configuration structure
-    internal let decelerationRate = UIScrollView.DecelerationRate.normal.rawValue
+    internal let decelerationRate = Double(UIScrollView.DecelerationRate.normal.rawValue)
 
     // TODO: Inject the minimum zoom as part of a configuration structure
-    internal let minZoom: CGFloat = 0.0
+    internal let minZoom = 0.0
 
     // Initialize the handler which creates the panGestureRecognizer and adds to the view
     override internal init(for view: UIView, withDelegate delegate: GestureHandlerDelegate) {
@@ -37,19 +37,19 @@ internal class PinchGestureHandler: GestureHandler {
 
         } else if pinchGestureRecognizer.state == .changed {
 
-            let newScale = scale * pinchGestureRecognizer.scale
+            let newScale = scale * Double(pinchGestureRecognizer.scale)
             delegate.pinchScaleChanged(with: log2(newScale), andAnchor: pinchCenterPoint)
 
         } else if pinchGestureRecognizer.state == .ended
             || pinchGestureRecognizer.state == .cancelled {
 
-            var velocity = pinchGestureRecognizer.velocity
+            var velocity = Double(pinchGestureRecognizer.velocity)
             if velocity > -0.5 && velocity < 3 {
                 velocity = 0
             }
 
             let duration = ((velocity > 0) ? 1 : 0.25) * decelerationRate
-            let scale = self.scale * pinchGestureRecognizer.scale
+            let scale = self.scale * Double(pinchGestureRecognizer.scale)
             var newScale = scale
 
             if velocity >= 0 {

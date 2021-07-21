@@ -1,4 +1,5 @@
 import Foundation
+@_spi(Internal) import MapboxCoreMaps
 
 extension TilesetDescriptorOptions {
     /// Initializes a `TilesetDescriptorOptions` which is used in the creation of
@@ -38,14 +39,14 @@ extension TilesetDescriptorOptions {
     ///     If not provided, resolving of the corresponding tileset descriptor
     ///     will not cause creating of a new style package but the loaded
     ///     resources will be stored in the disk cache.
-    public convenience init(styleURI: StyleURI,
-                            zoomRange: ClosedRange<UInt8>,
-                            pixelRatio: Float = Float(UIScreen.main.scale),
-                            stylePackOptions: StylePackLoadOptions? = nil) {
-        self.init(styleURI: styleURI.rawValue,
+    public init(styleURI: StyleURI,
+                zoomRange: ClosedRange<UInt8>,
+                pixelRatio: Float = Float(UIScreen.main.scale),
+                stylePackOptions: StylePackLoadOptions? = nil) {
+        self.init(_styleURI: styleURI.rawValue,
                   minZoom: zoomRange.lowerBound,
                   maxZoom: zoomRange.upperBound,
                   pixelRatio: pixelRatio,
-                  stylePack: stylePackOptions)
+                  stylePackOptions: stylePackOptions)
     }
 }

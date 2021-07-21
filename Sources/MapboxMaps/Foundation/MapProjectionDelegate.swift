@@ -9,7 +9,7 @@ internal protocol MapProjectionDelegate: AnyObject {
     ///   - zoom: The zoom level
     ///
     /// - Returns: Meters
-    static func metersPerPoint(for latitude: CLLocationDegrees, zoom: CGFloat) -> Double
+    static func metersPerPoint(for latitude: CLLocationDegrees, zoom: Double) -> Double
 
     /// Calculate Spherical Mercator ProjectedMeters coordinates.
     /// - Parameter coordinate: Coordinate at which to calculate the projected
@@ -39,7 +39,7 @@ internal protocol MapProjectionDelegate: AnyObject {
     ///
     /// - Note: Coordinate latitudes will be clamped to
     ///     [Projection.latitudeMin, Projection.latitudeMax]
-    static func project(_ coordinate: CLLocationCoordinate2D, zoomScale: CGFloat) -> MercatorCoordinate
+    static func project(_ coordinate: CLLocationCoordinate2D, zoomScale: Double) -> MercatorCoordinate
 
     /// Calculate a coordinate for a given point on the map in Mercator Projection.
     ///
@@ -50,7 +50,7 @@ internal protocol MapProjectionDelegate: AnyObject {
     ///         512 * 2 ^ Zoom level) where tileSize is the width of a tile in
     ///         points.
     /// - Returns: Unprojected coordinate
-    static func unproject(_ mercatorCoordinate: MercatorCoordinate, zoomScale: CGFloat) -> CLLocationCoordinate2D
+    static func unproject(_ mercatorCoordinate: MercatorCoordinate, zoomScale: Double) -> CLLocationCoordinate2D
 }
 
 public class Projection: MapProjectionDelegate {
@@ -59,23 +59,23 @@ public class Projection: MapProjectionDelegate {
 
     internal init() {}
 
-    public static func metersPerPoint(for latitude: CLLocationDegrees, zoom: CGFloat) -> Double {
-        return MapboxCoreMaps.Projection.getMetersPerPixelAtLatitude(forLatitude: latitude, zoom: Double(zoom))
+    public static func metersPerPoint(for latitude: CLLocationDegrees, zoom: Double) -> Double {
+        return MapboxCoreMaps.Projection.getMetersPerPixelAtLatitude(forLatitude: latitude, zoom: zoom)
     }
 
     public static func projectedMeters(for coordinate: CLLocationCoordinate2D) -> ProjectedMeters {
-        return MapboxCoreMaps.Projection.projectedMetersForCoordinate(for: coordinate)
+        return MapboxCoreMaps.Projection.projectedMetersForCoordinate(coordinate: coordinate)
     }
 
     public static func coordinate(for projectedMeters: ProjectedMeters) -> CLLocationCoordinate2D {
-        return MapboxCoreMaps.Projection.coordinateForProjectedMeters(for: projectedMeters)
+        return MapboxCoreMaps.Projection.coordinateForProjectedMeters(projectedMeters: projectedMeters)
     }
 
-    public static func project(_ coordinate: CLLocationCoordinate2D, zoomScale: CGFloat) -> MercatorCoordinate {
-        return MapboxCoreMaps.Projection.project(for: coordinate, zoomScale: Double(zoomScale))
+    public static func project(_ coordinate: CLLocationCoordinate2D, zoomScale: Double) -> MercatorCoordinate {
+        return MapboxCoreMaps.Projection.project(coordinate: coordinate, zoomScale: zoomScale)
     }
 
-    public static func unproject(_ mercatorCoordinate: MercatorCoordinate, zoomScale: CGFloat) -> CLLocationCoordinate2D {
-        return MapboxCoreMaps.Projection.unproject(for: mercatorCoordinate, zoomScale: Double(zoomScale))
+    public static func unproject(_ mercatorCoordinate: MercatorCoordinate, zoomScale: Double) -> CLLocationCoordinate2D {
+        return MapboxCoreMaps.Projection.unproject(coordinate: mercatorCoordinate, zoomScale: zoomScale)
     }
 }

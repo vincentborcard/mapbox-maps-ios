@@ -1,40 +1,28 @@
 import Foundation
 import CoreLocation
 import UIKit
+@_spi(Internal) import MapboxCoreMaps
 
-public struct CameraState: Hashable {
-    public let center: CLLocationCoordinate2D
-    public let padding: UIEdgeInsets
-    public let zoom: CGFloat
-    public let bearing: CLLocationDirection
-    public let pitch: CGFloat
-
-    internal init(_ objcValue: MapboxCoreMaps.CameraState) {
-        self.center     = objcValue.center
-        self.padding    = objcValue.padding.toUIEdgeInsetsValue()
-        self.zoom       = CGFloat(objcValue.zoom)
-        self.bearing    = CLLocationDirection(objcValue.bearing)
-        self.pitch      = CGFloat(objcValue.pitch)
+public extension CameraState {
+    var padding: UIEdgeInsets {
+        get {
+            _padding.toUIEdgeInsetsValue()
+        }
+        set {
+            _padding = newValue.toMBXEdgeInsetsValue()
+        }
     }
 
-    public static func == (lhs: CameraState, rhs: CameraState) -> Bool {
-        return lhs.center.latitude == rhs.center.latitude
-            && lhs.center.longitude == rhs.center.longitude
-            && lhs.padding == rhs.padding
-            && lhs.zoom == rhs.zoom
-            && lhs.bearing == rhs.bearing
-            && lhs.pitch == rhs.pitch
+    var bearing: CLLocationDirection {
+        get {
+            _bearing
+        }
+        set {
+            _bearing = newValue
+        }
     }
 
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(center.latitude)
-        hasher.combine(center.longitude)
-        hasher.combine(padding.top)
-        hasher.combine(padding.left)
-        hasher.combine(padding.bottom)
-        hasher.combine(padding.right)
-        hasher.combine(zoom)
-        hasher.combine(bearing)
-        hasher.combine(pitch)
+    init(center: CLLocationCoordinate2D, padding: UIEdgeInsets, zoom: Double, bearing: CLLocationDirection, pitch: Double) {
+        self.init(_center: center, padding: padding.toMBXEdgeInsetsValue(), zoom: zoom, bearing: bearing, pitch: pitch)
     }
 }

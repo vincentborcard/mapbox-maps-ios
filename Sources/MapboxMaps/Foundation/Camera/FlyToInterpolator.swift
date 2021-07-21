@@ -15,8 +15,8 @@ internal struct FlyToInterpolator {
     /// S: Total length of the flight path, measured in ρ-screenfuls.
     fileprivate var S: Double
 
-    fileprivate let sourceZoom: CGFloat
-    fileprivate let sourceScale: CGFloat
+    fileprivate let sourceZoom: Double
+    fileprivate let sourceScale: Double
 
     fileprivate let sourcePoint: CGPoint
     fileprivate let destPoint: CGPoint
@@ -24,8 +24,8 @@ internal struct FlyToInterpolator {
     internal let sourceBearing: Double
     internal var destBearing: Double
 
-    internal let sourcePitch: CGFloat
-    internal let destPitch: CGFloat
+    internal let sourcePitch: Double
+    internal let destPitch: Double
 
     internal let sourcePadding: UIEdgeInsets
     internal let destPadding: UIEdgeInsets
@@ -55,9 +55,9 @@ internal struct FlyToInterpolator {
         // Initial conditions
         let sourcePaddingParam   = source.padding
         let sourceCoord          = source.center
-        let sourceZoomParam      = CGFloat(source.zoom)
-        let sourcePitchParam     = CGFloat(source.pitch)
-        let sourceBearingParam   = CLLocationDirection(source.bearing)
+        let sourceZoomParam      = source.zoom
+        let sourcePitchParam     = source.pitch
+        let sourceBearingParam   = source.bearing
 
         sourceZoom  = sourceZoomParam
         sourceScale = pow(2, sourceZoom)
@@ -71,8 +71,8 @@ internal struct FlyToInterpolator {
 
         // Note that the source arguments are NOT clamped - these are assumed to be valid parameters
         let compilerWorkaround = sourceZoom
-        let destZoom = (dest.zoom ?? compilerWorkaround).clamped(to: CGFloat(cameraBounds.minZoom)...CGFloat(cameraBounds.maxZoom))
-        destPitch = (dest.pitch ?? sourcePitchParam).clamped(to: CGFloat(cameraBounds.minPitch)...CGFloat(cameraBounds.maxPitch))
+        let destZoom = (dest.zoom ?? compilerWorkaround).clamped(to: cameraBounds.minZoom...cameraBounds.maxZoom)
+        destPitch = (dest.pitch ?? sourcePitchParam).clamped(to: cameraBounds.minPitch...cameraBounds.maxPitch)
         destBearing = dest.bearing ?? sourceBearingParam
 
         // Unwrap

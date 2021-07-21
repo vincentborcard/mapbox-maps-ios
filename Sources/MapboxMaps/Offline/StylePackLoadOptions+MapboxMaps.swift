@@ -1,5 +1,6 @@
 import Foundation
 import CoreLocation
+@_spi(Internal) import MapboxCoreMaps
 
 extension StylePackLoadOptions {
     /// Initializes a `StylePackLoadOptions`
@@ -15,27 +16,16 @@ extension StylePackLoadOptions {
     ///
     /// If `metadata` is not a valid JSON object, then this initializer returns
     /// `nil`.
-    public convenience init?(glyphsRasterizationMode: GlyphsRasterizationMode?,
-                             metadata: Any? = nil,
-                             acceptExpired: Bool = false) {
+    public init?(glyphsRasterizationMode: GlyphsRasterizationMode?,
+                 metadata: Any? = nil,
+                 acceptExpired: Bool = false) {
         if let metadata = metadata {
             guard JSONSerialization.isValidJSONObject(metadata) else {
                 return nil
             }
         }
-        self.init(__glyphsRasterizationMode: glyphsRasterizationMode?.NSNumber,
+        self.init(_glyphsRasterizationMode: glyphsRasterizationMode,
                   metadata: metadata,
                   acceptExpired: acceptExpired)
-    }
-
-    /// Specifies the glyphs rasterization mode.
-    ///
-    /// If provided, updates the style package's glyphs rasterization mode,
-    /// which defines which glyphs will be loaded from the server.
-    ///
-    /// By default, ideographs are rasterized locally and other glyphs are
-    /// loaded from network (i.e. `.ideographsRasterizedLocally` is used).
-    public var glyphsRasterizationMode: GlyphsRasterizationMode? {
-        __glyphsRasterizationMode?.intValueAsRawRepresentable()
     }
 }

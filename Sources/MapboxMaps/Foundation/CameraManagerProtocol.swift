@@ -61,8 +61,8 @@ internal protocol CameraManagerProtocol {
     /// - Returns: A `CameraOptions` that fits the provided constraints
     func camera(for geometry: Turf.Geometry,
                 padding: UIEdgeInsets,
-                bearing: CGFloat?,
-                pitch: CGFloat?) -> CameraOptions
+                bearing: Double?,
+                pitch: Double?) -> CameraOptions
 
     // MARK: - CameraOptions to CoordinateBounds
 

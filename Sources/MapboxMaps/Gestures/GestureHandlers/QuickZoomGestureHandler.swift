@@ -5,7 +5,7 @@ import UIKit
 /// a tap gesture followed by a long press gesture.
 internal class QuickZoomGestureHandler: GestureHandler {
     private var quickZoomStart: CGFloat = 0.0
-    private var scale: CGFloat = 0.0
+    private var scale = 0.0
 
     override init(for view: UIView, withDelegate delegate: GestureHandlerDelegate) {
         super.init(for: view, withDelegate: delegate)
@@ -34,7 +34,7 @@ internal class QuickZoomGestureHandler: GestureHandler {
             let bounds = view.bounds
             let anchor = CGPoint(x: bounds.midX, y: bounds.midY)
 
-            var newScale = scale + distance / 75
+            var newScale = scale + Double(distance) / 75
 
             if newScale.isNaN { newScale = 0 }
 

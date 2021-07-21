@@ -9,7 +9,7 @@ public struct CameraTransition: Equatable {
     public var center: Change<CLLocationCoordinate2D>
 
     /// Represents a change to the zoom of the map.
-    public var zoom: Change<CGFloat>
+    public var zoom: Change<Double>
 
     /// Represetns a change to the padding of the map.
     public var padding: Change<UIEdgeInsets>
@@ -25,7 +25,7 @@ public struct CameraTransition: Equatable {
     public var shouldOptimizeBearingPath: Bool = true
 
     /// Represents a change to the pitch of the map.
-    public var pitch: Change<CGFloat>
+    public var pitch: Change<Double>
 
     /// Generic struct used to represent a change in a value from a starting point (i.e. `fromValue`) to an end point (i.e. `toValue`).
     public struct Change<T>: Equatable where T: Equatable {
@@ -63,7 +63,6 @@ public struct CameraTransition: Equatable {
                              zoom: zoom.fromValue,
                              bearing: bearing.fromValue,
                              pitch: pitch.fromValue)
-
     }
 
     internal var optimizedBearingToValue: CLLocationDirection? {

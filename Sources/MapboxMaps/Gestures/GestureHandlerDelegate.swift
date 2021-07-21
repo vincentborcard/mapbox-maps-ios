@@ -22,34 +22,34 @@ internal protocol GestureHandlerDelegate: AnyObject {
     func gestureBegan(for gestureType: GestureType)
 
     // Returns initial scale of the map
-    func scaleForZoom() -> CGFloat
+    func scaleForZoom() -> Double
 
     // Scale has changed with a new value and a given anchor
-    func pinchScaleChanged(with newScale: CGFloat, andAnchor anchor: CGPoint)
+    func pinchScaleChanged(with newScale: Double, andAnchor anchor: CGPoint)
 
     // Pinch has completed with a final scale and possible drift
-    func pinchEnded(with finalScale: CGFloat, andDrift possibleDrift: Bool, andAnchor anchor: CGPoint)
+    func pinchEnded(with finalScale: Double, andDrift possibleDrift: Bool, andAnchor anchor: CGPoint)
 
     // Requests initial bearing of the map
-    func rotationStartAngle() -> CGFloat
+    func rotationStartAngle() -> Double
 
     // Bearing should change with `changedAngle` at a given `anchor`
-    func rotationChanged(with changedAngle: CGFloat, and anchor: CGPoint, and pinchScale: CGFloat)
+    func rotationChanged(with changedAngle: Double, and anchor: CGPoint, and pinchScale: Double)
 
     // Rotation gesture is complete with a `finalAngle` and a given `anchor`
-    func rotationEnded(with finalAngle: CGFloat, and anchor: CGPoint, with pinchState: UIGestureRecognizer.State)
+    func rotationEnded(with finalAngle: Double, and anchor: CGPoint, with pinchState: UIGestureRecognizer.State)
 
     // Zoom changes based on new location of gesture
-    func quickZoomChanged(with newScale: CGFloat, and anchor: CGPoint)
+    func quickZoomChanged(with newScale: Double, and anchor: CGPoint)
 
     // Quick zoom gesture ended
     func quickZoomEnded()
 
     // Returns initial pitch of the map
-    func initialPitch() -> CGFloat
+    func initialPitch() -> Double
 
     // Pitch gesture changed
-    func pitchChanged(newPitch: CGFloat)
+    func pitchChanged(newPitch: Double)
 
     // Pitch gesture ended
     func pitchEnded()
@@ -72,27 +72,27 @@ internal extension GestureHandlerDelegate {
 
     func gestureBegan(for gestureType: GestureType) {}
 
-    func scaleForZoom() -> CGFloat { return 0.0 }
+    func scaleForZoom() -> Double { return 0.0 }
 
-    func pinchScaleChanged(with newScale: CGFloat, andAnchor anchor: CGPoint) {}
+    func pinchScaleChanged(with newScale: Double, andAnchor anchor: CGPoint) {}
 
-    func pinchEnded(with finalScale: CGFloat, andDrift possibleDrift: Bool, andAnchor anchor: CGPoint) {}
+    func pinchEnded(with finalScale: Double, andDrift possibleDrift: Bool, andAnchor anchor: CGPoint) {}
 
-    func rotationStartAngle() -> CGFloat { return 0.0 }
+    func rotationStartAngle() -> Double { return 0.0 }
 
-    func rotationChanged(with changedAngle: CGFloat, and anchor: CGPoint, and pinchScale: CGFloat) {}
+    func rotationChanged(with changedAngle: Double, and anchor: CGPoint, and pinchScale: Double) {}
 
-    func rotationEnded(with finalAngle: CGFloat, and anchor: CGPoint, with pinchState: UIGestureRecognizer.State) {}
+    func rotationEnded(with finalAngle: Double, and anchor: CGPoint, with pinchState: UIGestureRecognizer.State) {}
 
-    func quickZoomChanged(with newScale: CGFloat, and anchor: CGPoint) {}
+    func quickZoomChanged(with newScale: Double, and anchor: CGPoint) {}
 
     func quickZoomEnded() {}
 
-    func initialPitch() -> CGFloat { return 0.0 }
+    func initialPitch() -> Double { return 0.0 }
 
     func horizontalPitchTiltTolerance() -> Double { return 45.0 }
 
-    func pitchChanged(newPitch: CGFloat) {}
+    func pitchChanged(newPitch: Double) {}
 
     func pitchEnded() {}
 }

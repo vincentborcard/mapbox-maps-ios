@@ -1,4 +1,5 @@
 import Foundation
+@_spi(Internal) import MapboxCommon
 
 extension TileRegionLoadOptions {
     /// Initializes a `TileRegionLoadOptions`, required for
@@ -20,37 +21,25 @@ extension TileRegionLoadOptions {
     ///
     /// If `metadata` is not a valid JSON object, then this initializer returns
     /// `nil`.
-    public convenience init?(geometry: Geometry?,
-                             descriptors: [TilesetDescriptor],
-                             metadata: Any? = nil,
-                             acceptExpired: Bool = false ,
-                             networkRestriction: NetworkRestriction = .none,
-                             averageBytesPerSecond: Int? = nil) {
+    public init?(geometry: Geometry?,
+                 descriptors: [TilesetDescriptor],
+                 metadata: Any? = nil,
+                 acceptExpired: Bool = false ,
+                 networkRestriction: NetworkRestriction = .none,
+                 averageBytesPerSecond: UInt32? = nil) {
         if let metadata = metadata {
             guard JSONSerialization.isValidJSONObject(metadata) else {
                 return nil
             }
         }
 
-        self.init(__geometry: geometry,
+        self.init(_geometry: geometry,
                   descriptors: descriptors.isEmpty ? nil : descriptors,
                   metadata: metadata,
                   acceptExpired: acceptExpired,
                   networkRestriction: networkRestriction,
-                  start: nil, // Not yet implemented
-                  averageBytesPerSecond: averageBytesPerSecond?.NSNumber,
+                  startLocation: nil, // Not yet implemented
+                  averageBytesPerSecond: averageBytesPerSecond,
                   extraOptions: nil)
-    }
-
-    /// Limits the download speed of the tile region.
-    ///
-    /// Note that this is not a strict bandwidth limit, but only limits the
-    /// average download speed. tile regions may be temporarily downloaded with
-    /// higher speed, then pause downloading until the rolling average has
-    /// dropped below this value.
-    ///
-    /// If unspecified, the download speed will not be restricted.
-    public var averageBytesPerSecond: Int? {
-        __averageBytesPerSecond?.intValue
     }
 }

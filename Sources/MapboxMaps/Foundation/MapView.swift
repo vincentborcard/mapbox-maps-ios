@@ -1,7 +1,7 @@
 @_exported import MapboxCoreMaps
 @_exported import MapboxCommon
-@_implementationOnly import MapboxCoreMaps_Private
-@_implementationOnly import MapboxCommon_Private
+@_spi(Internal) import MapboxCoreMaps
+@_spi(Internal) import MapboxCommon
 import UIKit
 import Turf
 
@@ -151,17 +151,8 @@ open class MapView: UIView {
         let resolvedMapInitOptions: MapInitOptions
         if mapInitOptions.mapOptions.size == nil {
             // Update using the view's size
-            let original = mapInitOptions.mapOptions
-            let resolvedMapOptions = MapOptions(
-                __contextMode: original.__contextMode,
-                constrainMode: original.__constrainMode,
-                viewportMode: original.__viewportMode,
-                orientation: original.__orientation,
-                crossSourceCollisions: original.__crossSourceCollisions,
-                optimizeForTerrain: original.__optimizeForTerrain,
-                size: Size(width: Float(bounds.width), height: Float(bounds.height)),
-                pixelRatio: original.pixelRatio,
-                glyphsRasterizationOptions: original.glyphsRasterizationOptions)
+            var resolvedMapOptions = mapInitOptions.mapOptions
+            resolvedMapOptions.size = bounds.size
             resolvedMapInitOptions = MapInitOptions(
                 resourceOptions: mapInitOptions.resourceOptions,
                 mapOptions: resolvedMapOptions,

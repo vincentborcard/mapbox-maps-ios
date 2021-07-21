@@ -79,9 +79,9 @@ public class FlyToCameraAnimator: NSObject, CameraAnimator, CameraAnimatorInterf
         }
         mapboxMap.setCamera(to: CameraOptions(
             center: interpolator.coordinate(at: fractionComplete),
-            zoom: CGFloat(interpolator.zoom(at: fractionComplete)),
+            zoom: interpolator.zoom(at: fractionComplete),
             bearing: interpolator.bearing(at: fractionComplete),
-            pitch: CGFloat(interpolator.pitch(at: fractionComplete))))
+            pitch: interpolator.pitch(at: fractionComplete)))
     }
 
     // MARK: Cancelable

@@ -16,7 +16,7 @@ import CoreLocation
  */
 
 internal class PitchGestureHandler: GestureHandler {
-    internal var initialPitch = CGFloat.zero
+    internal var initialPitch = 0.0
     internal var dragGestureTranslation: CGPoint!
 
     internal override init(for view: UIView, withDelegate delegate: GestureHandlerDelegate) {
@@ -76,8 +76,8 @@ internal class PitchGestureHandler: GestureHandler {
             // the tolerance specified AND the slope angle of the gesture's
             // movement is more then 60, notify the delegate of a change in pitch.
             if fabs(touchPointAngle) < horizontalTiltTolerance && fabs(gestureSlopeAngle) > 60 {
-                let verticalGestureTranslation = gestureTranslation.y
-                let slowDown = CGFloat(2.0)
+                let verticalGestureTranslation = Double(gestureTranslation.y)
+                let slowDown = 2.0
                 let newPitch = initialPitch - ( verticalGestureTranslation / slowDown )
                 delegate.pitchChanged(newPitch: newPitch)
             }

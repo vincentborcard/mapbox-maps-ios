@@ -1,5 +1,5 @@
 import Foundation
-@_implementationOnly import MapboxCommon_Private
+@_spi(Internal) import MapboxCommon
 
 extension TileStore {
 
@@ -73,18 +73,18 @@ extension TileStore {
     public func loadTileRegion(forId id: String,
                                loadOptions: TileRegionLoadOptions,
                                progress: TileRegionLoadProgressCallback? = nil,
-                               completion: @escaping (Result<TileRegion, Error>) -> Void) -> Cancelable {
+                               completion: @escaping (Result<TileRegion, TileRegionError>) -> Void) -> Cancelable {
         if let progress = progress {
-            return __loadTileRegion(forId: id,
-                                    loadOptions: loadOptions,
-                                    onProgress: progress,
-                                    onFinished: tileStoreClosureAdapter(for: completion, type: TileRegion.self)).asCancelable()
+            return loadTileRegion(id: id,
+                                  loadOptions: loadOptions,
+                                  onProgress: progress,
+                                  onFinished: completion).asCancelable()
         }
         // Use overloaded version
         else {
-            return __loadTileRegion(forId: id,
-                                    loadOptions: loadOptions,
-                                    onFinished: tileStoreClosureAdapter(for: completion, type: TileRegion.self)).asCancelable()
+            return loadTileRegion(id: id,
+                                  loadOptions: loadOptions,
+                                  onFinished: completion).asCancelable()
         }
     }
 
@@ -103,10 +103,10 @@ extension TileStore {
     ///     user-controlled thread.
     public func tileRegionContainsDescriptors(forId id: String,
                                               descriptors: [TilesetDescriptor],
-                                              completion: @escaping (Result<Bool, Error>) -> Void) {
-        __tileRegionContainsDescriptors(forId: id,
-                                        descriptors: descriptors,
-                                        callback: tileStoreClosureAdapter(for: completion, type: NSNumber.self))
+                                              completion: @escaping (Result<Bool, TileRegionError>) -> Void) {
+        tileRegionContainsDescriptors(id: id,
+                                      descriptors: descriptors,
+                                      callback: completion)
     }
 
     /// Fetch the array of the existing tile regions.
@@ -118,8 +118,8 @@ extension TileStore {
     ///     The user-provided callbacks will be executed on a TileStore-controlled
     ///     worker thread; it is the responsibility of the user to dispatch to a
     ///     user-controlled thread.
-    public func allTileRegions(completion: @escaping (Result<[TileRegion], Error>) -> Void) {
-        __getAllTileRegions(forCallback: tileStoreClosureAdapter(for: completion, type: NSArray.self))
+    public func allTileRegions(completion: @escaping (Result<[TileRegion], TileRegionError>) -> Void) {
+        getAllTileRegions(callback: completion)
     }
 
     /// Returns a tile region given its id.
@@ -134,9 +134,8 @@ extension TileStore {
     ///     worker thread; it is the responsibility of the user to dispatch to a
     ///     user-controlled thread.
     public func tileRegion(forId id: String,
-                           completion: @escaping (Result<TileRegion, Error>) -> Void) {
-        __getTileRegion(forId: id,
-                        callback: tileStoreClosureAdapter(for: completion, type: TileRegion.self))
+                           completion: @escaping (Result<TileRegion, TileRegionError>) -> Void) {
+        getTileRegion(id: id, callback: completion)
     }
 
     /// Fetch a tile region's associated geometry
@@ -155,9 +154,8 @@ extension TileStore {
     ///     worker thread; it is the responsibility of the user to dispatch to a
     ///     user-controlled thread.
     public func tileRegionGeometry(forId id: String,
-                                   completion: @escaping (Result<Geometry, Error>) -> Void) {
-        __getTileRegionGeometry(forId: id,
-                                callback: tileStoreClosureAdapter(for: completion, type: Geometry.self))
+                                   completion: @escaping (Result<Geometry, TileRegionError>) -> Void) {
+        getTileRegionGeometry(id: id, callback: completion)
     }
 
     /// Fetch a tile region's associated metadata
@@ -169,14 +167,7 @@ extension TileStore {
     ///   - completion: The Result closure. Any `Result` error could be of type
     ///         `TileRegionError`.
     public func tileRegionMetadata(forId id: String,
-                                   completion: @escaping (Result<Any, Error>) -> Void) {
-        __getTileRegionMetadata(forId: id,
-                                callback: tileStoreClosureAdapter(for: completion, type: AnyObject.self))
+                                   completion: @escaping (Result<Any, TileRegionError>) -> Void) {
+        getTileRegionMetadata(id: id, callback: completion)
     }
-}
-
-private func tileStoreClosureAdapter<T, ObjCType>(
-    for closure: @escaping (Result<T, Error>) -> Void,
-    type: ObjCType.Type) -> ((Expected<AnyObject, AnyObject>?) -> Void) where ObjCType: AnyObject {
-    return coreAPIClosureAdapter(for: closure, type: type, concreteErrorType: TileRegionError.self)
 }

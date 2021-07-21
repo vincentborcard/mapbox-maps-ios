@@ -167,7 +167,7 @@ extension GestureManager: UIGestureRecognizerDelegate {
  */
 internal protocol GestureContextProvider: AnyObject {
     func fetchPinchState() -> UIGestureRecognizer.State?
-    func fetchPinchScale() -> CGFloat?
+    func fetchPinchScale() -> Double?
     func requireGestureToFail(allowedGesture: GestureHandler, failableGesture: GestureHandler)
 }
 
@@ -183,14 +183,14 @@ extension GestureManager: GestureContextProvider {
         return validPinchRecognizer.state
     }
 
-    internal func fetchPinchScale() -> CGFloat? {
+    internal func fetchPinchScale() -> Double? {
 
         guard let validPinchHandler = gestureHandlers[.pinch],
             let validPinchRecognizer = validPinchHandler.gestureRecognizer as? UIPinchGestureRecognizer else {
                 return nil
         }
 
-        return validPinchRecognizer.scale
+        return Double(validPinchRecognizer.scale)
     }
 
     internal func requireGestureToFail(allowedGesture: GestureHandler, failableGesture: GestureHandler) {
@@ -251,22 +251,22 @@ extension GestureManager: GestureHandlerDelegate {
         delegate?.gestureBegan(for: gestureType)
     }
 
-    internal func scaleForZoom() -> CGFloat {
+    internal func scaleForZoom() -> Double {
         return mapboxMap.cameraState.zoom
     }
 
-    internal func pinchScaleChanged(with newScale: CGFloat, andAnchor anchor: CGPoint) {
+    internal func pinchScaleChanged(with newScale: Double, andAnchor anchor: CGPoint) {
         mapboxMap.setCamera(to: CameraOptions(anchor: anchor, zoom: newScale))
     }
 
-    internal func pinchEnded(with finalScale: CGFloat, andDrift possibleDrift: Bool, andAnchor anchor: CGPoint) {
+    internal func pinchEnded(with finalScale: Double, andDrift possibleDrift: Bool, andAnchor anchor: CGPoint) {
         mapboxMap.setCamera(to: CameraOptions(anchor: anchor, zoom: finalScale))
         unrotateIfNeededForGesture(with: .ended)
     }
 
-    internal func quickZoomChanged(with newScale: CGFloat, and anchor: CGPoint) {
-        let minZoom = CGFloat(mapboxMap.cameraBounds.minZoom)
-        let maxZoom = CGFloat(mapboxMap.cameraBounds.maxZoom)
+    internal func quickZoomChanged(with newScale: Double, and anchor: CGPoint) {
+        let minZoom = mapboxMap.cameraBounds.minZoom
+        let maxZoom = mapboxMap.cameraBounds.maxZoom
         let zoom = newScale.clamped(to: minZoom...maxZoom)
         mapboxMap.setCamera(to: CameraOptions(anchor: anchor, zoom: zoom))
     }
@@ -275,15 +275,15 @@ extension GestureManager: GestureHandlerDelegate {
         unrotateIfNeededForGesture(with: .ended)
     }
     internal func isRotationAllowed() -> Bool {
-        let minZoom = CGFloat(mapboxMap.cameraBounds.minZoom)
+        let minZoom = mapboxMap.cameraBounds.minZoom
         return mapboxMap.cameraState.zoom >= minZoom
     }
 
-    internal func rotationStartAngle() -> CGFloat {
-        return CGFloat((mapboxMap.cameraState.bearing * .pi) / 180.0 * -1)
+    internal func rotationStartAngle() -> Double {
+        return (mapboxMap.cameraState.bearing * .pi) / 180.0 * -1
     }
 
-    internal func rotationChanged(with changedAngle: CGFloat, and anchor: CGPoint, and pinchScale: CGFloat) {
+    internal func rotationChanged(with changedAngle: Double, and anchor: CGPoint, and pinchScale: Double) {
         var changedAngleInDegrees = changedAngle * 180.0 / .pi * -1
         changedAngleInDegrees = changedAngleInDegrees.truncatingRemainder(dividingBy: 360.0)
 
@@ -297,7 +297,7 @@ extension GestureManager: GestureHandlerDelegate {
             to: CameraOptions(bearing: CLLocationDirection(changedAngleInDegrees)))
     }
 
-    internal func rotationEnded(with finalAngle: CGFloat, and anchor: CGPoint, with pinchState: UIGestureRecognizer.State) {
+    internal func rotationEnded(with finalAngle: Double, and anchor: CGPoint, with pinchState: UIGestureRecognizer.State) {
         var finalAngleInDegrees = finalAngle * 180.0 / .pi * -1
         finalAngleInDegrees = finalAngleInDegrees.truncatingRemainder(dividingBy: 360.0)
         mapboxMap.setCamera(to: CameraOptions(bearing: CLLocationDirection(finalAngleInDegrees)))
@@ -323,7 +323,7 @@ extension GestureManager: GestureHandlerDelegate {
         }
     }
 
-    internal func initialPitch() -> CGFloat {
+    internal func initialPitch() -> Double {
         return mapboxMap.cameraState.pitch
     }
 
@@ -331,7 +331,7 @@ extension GestureManager: GestureHandlerDelegate {
         return 45.0
     }
 
-    internal func pitchChanged(newPitch: CGFloat) {
+    internal func pitchChanged(newPitch: Double) {
         mapboxMap.setCamera(to: CameraOptions(pitch: newPitch))
     }
 
