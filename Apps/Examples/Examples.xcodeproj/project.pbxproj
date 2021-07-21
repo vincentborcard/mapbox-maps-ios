@@ -25,6 +25,7 @@
 		17483DFD2670113300396F8D /* MultiplePointAnnotationsExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17483DFC2670113300396F8D /* MultiplePointAnnotationsExample.swift */; };
 		177C9D47269CA61100D13A2D /* ShowHideLayerExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177C9D46269CA61100D13A2D /* ShowHideLayerExample.swift */; };
 		17ACD50826A61DF60060AF55 /* LineLayerWithTerrainExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ACD50726A61DF60060AF55 /* LineLayerWithTerrainExample.swift */; };
+		17ACD50A26A7C78E0060AF55 /* marathon_route.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 17ACD50926A7C78E0060AF55 /* marathon_route.geojson */; };
 		17AF784026837E91006EA30D /* Fire_Hydrants.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 17AF783F26837E91006EA30D /* Fire_Hydrants.geojson */; };
 		17B4805A2684FB2300CF0D5E /* AnimateImageLayerExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B480592684FB2300CF0D5E /* AnimateImageLayerExample.swift */; };
 		17B4806126851C6E00CF0D5E /* radar4.gif in Resources */ = {isa = PBXBuildFile; fileRef = 17B4805C26851C6E00CF0D5E /* radar4.gif */; };
@@ -153,6 +154,7 @@
 		17483DFC2670113300396F8D /* MultiplePointAnnotationsExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplePointAnnotationsExample.swift; sourceTree = "<group>"; };
 		177C9D46269CA61100D13A2D /* ShowHideLayerExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowHideLayerExample.swift; sourceTree = "<group>"; };
 		17ACD50726A61DF60060AF55 /* LineLayerWithTerrainExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineLayerWithTerrainExample.swift; sourceTree = "<group>"; };
+		17ACD50926A7C78E0060AF55 /* marathon_route.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = marathon_route.geojson; sourceTree = "<group>"; };
 		17AF783F26837E91006EA30D /* Fire_Hydrants.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Fire_Hydrants.geojson; sourceTree = "<group>"; };
 		17B480592684FB2300CF0D5E /* AnimateImageLayerExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateImageLayerExample.swift; sourceTree = "<group>"; };
 		17B4805C26851C6E00CF0D5E /* radar4.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = radar4.gif; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 		07B071D12547CF50007F2865 /* Sample Data */ = {
 			isa = PBXGroup;
 			children = (
+				17ACD50926A7C78E0060AF55 /* marathon_route.geojson */,
 				17B4805B26851C0600CF0D5E /* Radar */,
 				17AF783F26837E91006EA30D /* Fire_Hydrants.geojson */,
 				A41E58F3265C005300D8B946 /* blueprint_style.json */,
@@ -501,6 +504,7 @@
 				03BB33F925EDA19200109B28 /* 34M_17.dae in Resources */,
 				CA628414262DFD5C00651488 /* OfflineManagerExample.storyboard in Resources */,
 				0C78AC2F25BF72C70057F570 /* GradientLine.geojson in Resources */,
+				17ACD50A26A7C78E0060AF55 /* marathon_route.geojson in Resources */,
 				0C52BA9C25AFB5940054ECA8 /* arrow.gltf in Resources */,
 				07DC84422538B1F100F4AF14 /* Assets.xcassets in Resources */,
 				A41E58F4265C005300D8B946 /* blueprint_style.json in Resources */,

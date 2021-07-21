@@ -75,7 +75,8 @@ public struct Examples {
                 type: BuildingExtrusionsExample.self),
         Example(title: "Add a sky layer",
                 description: "Add a customizable sky layer to simulate natural lighting with a Terrain layer.",
-                type: SkyLayerExample.self)
+                type: SkyLayerExample.self),
+        Example(title: "Add a line to 3D terrain", description: "", type: LineLayerWithTerrainExample.self)
     ]
 
     // Examples that focus on annotations.
